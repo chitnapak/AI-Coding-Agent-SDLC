@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# SQLite WAL/SHM temp files (keep farmart.db committed for Vercel demo build)
+farmart.db-wal
+farmart.db-shm
+
 # debug
 npm-debug.log*
 yarn-debug.log*
