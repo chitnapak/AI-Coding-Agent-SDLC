@@ -24,3 +24,14 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Keep Swagger's familiar layout while bringing it into the Farmart visual system. */
+.farmart-swagger .swagger-ui { font-family: Arial, Helvetica, sans-serif; }
+.farmart-swagger .swagger-ui .topbar { display: none; }
+.farmart-swagger .swagger-ui .info { margin: 28px 0; }
+.farmart-swagger .swagger-ui .info .title, .farmart-swagger .swagger-ui .opblock-tag { color: #222222; }
+.farmart-swagger .swagger-ui .opblock-tag { border-bottom-color: #e5e7eb; }
+.farmart-swagger .swagger-ui .opblock.opblock-get { border-color: #2b783c; background: rgba(43, 120, 60, 0.06); }
+.farmart-swagger .swagger-ui .opblock.opblock-post { border-color: #fab528; background: rgba(250, 181, 40, 0.10); }
+.farmart-swagger .swagger-ui .btn.execute { border-color: #2b783c; background-color: #2b783c; }
+.farmart-swagger .swagger-ui .btn.authorize { border-color: #fab528; color: #8a5a00; }

@@ -1,0 +1,12 @@
+{
+  "name": "farmart-dev",
+  "description": "Farmart development agent with safety guardrails",
+  "hooks": {
+    "preToolUse": [
+      {
+        "matcher": "shell",
+        "command": "node -e \"const chunks=[]; process.stdin.on('data',d=>chunks.push(d)); process.stdin.on('end',()=>{ const e=JSON.parse(Buffer.concat(chunks).toString()); const cmd=(e.tool_input&&e.tool_input.command)||''; if(/rm\\s+-[a-zA-Z]*r[a-zA-Z]*f|rm\\s+-[a-zA-Z]*f[a-zA-Z]*r/.test(cmd)){ process.stderr.write('BLOCKED: rm -rf is not allowed. Use a safer delete command.'); process.exit(2); } process.exit(0); })\""
+      }
+    ]
+  }
+}
