@@ -15,12 +15,8 @@ vi.mock('@/lib/migrate', () => ({ migrate: vi.fn() }));
 const { GET } = await import('@/app/api/categories/route');
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function makeRequest(url = 'http://localhost/api/categories') {
-  return new Request(url) as unknown as import('next/server').NextRequest;
-}
-
-async function callGet(url?: string) {
-  const res = await GET(makeRequest(url) as never);
+async function callGet() {
+  const res = await GET();
   const body = await res.json();
   return { status: res.status, body };
 }

@@ -106,7 +106,7 @@ export interface CategoryFixture {
   id: string;
   name: string;
   icon?: string;
-  image_url?: string;
+  image_url?: string | null;
   product_count?: number;
   sort_order?: number;
 }

@@ -13,7 +13,9 @@
     "e2e:ui": "playwright test --config=playwright.config.ts --ui",
     "db:seed": "npx tsx src/lib/seed.ts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "skill:update": "npx tsx scripts/update-skill-doc.ts",
+    "skill:watch": "npx tsx scripts/watch-skill-doc.ts"
   },
   "dependencies": {
     "@types/better-sqlite3": "^9.6.0",

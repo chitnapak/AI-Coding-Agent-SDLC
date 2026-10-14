@@ -2,7 +2,7 @@
  * Integration tests for GET /api/catalog/home
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createTestDb, seedTestDb } from '@/test/helpers';
+import { createTestDb, seedTestDb, type ProductFixture } from '@/test/helpers';
 
 const testDb = createTestDb();
 vi.mock('@/lib/db', () => ({ db: testDb }));
@@ -26,7 +26,7 @@ const BASE_BRANDS = [
   { id: 'fb-2', brand: 'BrandB', title: 'Title B', sort_order: 2 },
 ];
 
-function makeProduct(overrides: Partial<Parameters<typeof seedTestDb>[1]['products']>[number] = {}) {
+function makeProduct(overrides: Partial<ProductFixture> = {}) {
   return {
     id: 'p1',
     sku: 'SK1',
