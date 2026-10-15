@@ -18,7 +18,7 @@ function timestamp(): string {
   return new Date().toISOString().replace("T", " ").slice(0, 19);
 }
 
-async function tick() {
+function tick(): void {
   try {
     updateSkillDoc();
   } catch (err) {
@@ -26,18 +26,7 @@ async function tick() {
   }
 }
 
-// Run once immediately on startup
-console.log(`[skill:watch] 🚀  Starting — will update PROJECT_SKILL.md every ${INTERVAL_MS / 1000}s`);
-console.log(`[skill:watch]     Press Ctrl+C to stop.\n`);
-await tick();
-
-// Then loop every INTERVAL_MS
-setInterval(async () => {
-  console.log(`\n[skill:watch] ⏱  ${timestamp()} — running update...`);
-  await tick();
-}, INTERVAL_MS);
-
-// Keep the process alive and handle graceful shutdown
+// Graceful shutdown
 process.on("SIGINT", () => {
   console.log(`\n[skill:watch] 👋  Stopped.`);
   process.exit(0);
@@ -46,3 +35,16 @@ process.on("SIGTERM", () => {
   console.log(`\n[skill:watch] 👋  Stopped.`);
   process.exit(0);
 });
+
+// Run once immediately on startup, then loop
+console.log(
+  `[skill:watch] 🚀  Starting — will update PROJECT_SKILL.md every ${INTERVAL_MS / 1000}s`
+);
+console.log(`[skill:watch]     Press Ctrl+C to stop.\n`);
+
+tick();
+
+setInterval(() => {
+  console.log(`\n[skill:watch] ⏱  ${timestamp()} — running update...`);
+  tick();
+}, INTERVAL_MS);
